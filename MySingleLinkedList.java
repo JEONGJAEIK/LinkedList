@@ -46,19 +46,60 @@ public class MySingleLinkedList<T> {
     }
 
     public void add(int index, T item) { // insert
-
+        if (index < 0 || index > size) {
+            return;
+        } else {
+            if (index == 0) {
+            addFirst(item);
+            } else {
+            Node<T> q = getNode(index-1);
+            addAfter(q,item);
+            }
+        }
     }
 
-    public void remove(int index) {  // delete
+    public T remove(int index) {  // delete
+        if (index < 0 || index >= size) {
+            return null;
+        } else {
+            if (index == 0) {
+                return removeFirst();
+            } else {
+                Node<T> prev = getNode(index - 1);
+                return removeAfter(prev);
+            }
+        }
+    }
+    public int indexOf(T item) {  // search
+        Node<T> p = head;
+        int index = 0;
+        while(p != null) {
+            if (p.data.equals(item)){
+                return index;
+            } else {
+                p = p.next;
+                index++;
+            }
+        }
+        return -1;
+    }
 
+    public Node<T> getNode(int index) {
+        if(index < 0 || index >= size) {
+            return null;
+        }
+        Node<T> p = head;
+        for (int i = 0; i < index; i++) {
+            p = p.next;
+        }
+        return p;
     }
 
     public T get(int index) {
-        return null;
-    }
-
-    public int indexOf(T item) {  // search
-        return -1;
+        if(index < 0 || index >= size) {
+            return null;
+        }
+        return getNode(index).data;
     }
 
     public static void main(String[] args) {
