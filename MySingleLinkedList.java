@@ -20,6 +20,29 @@ public class MySingleLinkedList<T> {
     public void addAfter(Node<T> before, T item) {
         Node<T> temp = new Node<T>(item);
         temp.next = before.next;
+        before.next = temp;
+        size++;
+    }
+
+    public T removeFirst() {
+        if (head == null) {
+            return null;
+        } else {
+            T temp = head.data;
+            head = head.next;
+            size--;
+            return temp;
+        }
+    }
+
+    public T removeAfter(Node<T> before) {
+        if ( before.next == null) {
+            return null;
+        } else {
+            T temp = before.next.data;
+            before.next = before.next.next;
+            return temp;
+        }
     }
 
     public void add(int index, T item) { // insert
