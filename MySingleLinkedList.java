@@ -70,6 +70,24 @@ public class MySingleLinkedList<T> {
             }
         }
     }
+
+    public T remove(T item) {
+        Node<T> p = head, q = null;
+        while (p != null && !p.data.equals(item)) {
+            q = p;
+            p = p.next;
+        }
+        if (p == null) {
+            return null;
+        }
+        if (q == null) {
+            return removeFirst();
+        } else {
+        return removeAfter(q);
+        }
+    }
+
+
     public int indexOf(T item) {  // search
         Node<T> p = head;
         int index = 0;
